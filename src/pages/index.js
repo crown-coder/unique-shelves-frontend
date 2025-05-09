@@ -1,4 +1,6 @@
 export { default as Home } from './Home'
+export { default as Courses } from './Courses'
+export { default as Mentors } from './Mentors'
 export { default as Login } from './Login'
 export { default as Signup } from './Signup'
 export { default as MentorDashboard } from './MentorDashboard'

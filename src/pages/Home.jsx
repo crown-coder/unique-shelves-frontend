@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 const Home = () => {
     return (
         <main className="w-full h-dvh">
-            <div className="px-8">
+            <div className="px-8 max-lg:px-2">
                 <NavBar />
                 <Hero />
                 <PopularCourseSection />
