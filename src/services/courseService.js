@@ -1,6 +1,29 @@
 import API from './api';
 import { toast } from 'react-toastify';
 
+// Get all courses (Public)
+export const getAllCourses = async () => {
+    try {
+        const response = await API.get('/courses/all');
+        return response.data;
+    } catch (error) {
+        const message = error.response?.data?.msg || 'Failed to fetch courses';
+        toast.error(message);
+        throw error;
+    }
+};
+
+export const getCourseById = async (id) => {
+    try {
+        const response = await API.get(`/courses/${id}`);
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Failed to fetch course');
+    }
+};
+
+
+
 // Create a new course (Mentor only)
 export const createCourse = async (courseData) => {
     try {
@@ -48,3 +71,4 @@ export const deleteCourse = async (courseId) => {
         throw error;
     }
 };
+

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { registerUser } from '../services/authService'
 import Socials from "./Socials"
 import { Link } from 'react-router-dom'
+
 const SignupForm = () => {
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ const SignupForm = () => {
         email: '',
         password: '',
         confirmPassword: '',
-        role: 'Mentor'
+        role: 'student' // Set default to student
     })
 
     const handleChange = (e) => {
@@ -37,7 +38,13 @@ const SignupForm = () => {
 
             const res = await registerUser(data);
             localStorage.setItem('token', res.data.token)
-            navigate('/mentor-dashboard/')
+            localStorage.setItem('userRole', data.role) // Store user role
+
+            if (data.role === "mentor") {
+                navigate('/mentor-dashboard/')
+            } else {
+                navigate('/') // Navigate to home for students
+            }
         } catch (err) {
             alert(err.response?.data?.msg || "Signup failed")
         }
@@ -99,16 +106,16 @@ const SignupForm = () => {
                     />
                 </div>
                 <div className="flex flex-col gap-1">
-                    <label htmlFor="signup-as" className="text-sm font-light">Sign Up as</label>
+                    <label htmlFor="role" className="text-sm font-light">Sign Up as</label>
                     <select
-                        name="signup-as"
+                        name="role"
                         className="w-full p-2 rounded-l-lg border border-gray-400"
                         value={formData.role}
                         onChange={handleChange}
                         required
                     >
-                        <option value="Mentor">Mentor</option>
-                        <option value="student" disabled>Student (Coming Soon)</option>
+                        <option value="student">Student</option>
+                        <option value="mentor">Mentor</option>
                     </select>
                 </div>
                 <div className="flex flex-col gap-1">
