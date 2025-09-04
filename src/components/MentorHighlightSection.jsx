@@ -18,7 +18,7 @@ const MentorHighlightSection = () => {
             name: "Abubakar Sadiq Alhassan",
             role: "Graphic Designer",
             bio: "Hi, I’m Abubakar Sadiq Alhassan (Sarkeey), a freelance graphic designer with 5+ years of experience. I create clean, customer-focused designs and have trained over 500 people to monetize their smartphones with creative skills.",
-            testimonial: "I currently offer a course titled “Basics of Graphics Design for Beginners” — perfect for anyone looking to start a design career using just a smartphone.",
+            testimonial: "I currently offer a course titled “Basics of Graphics Design for Beginners” — perfect for anyone looking to start a design career using just a mobilephone.",
             rating: 4.8,
             courses: 8,
             students: 6200,
