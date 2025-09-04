@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle } from 'lucide-react';
+import { FaCheckCircle } from "react-icons/fa";
 
 const PaymentSuccess = () => {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center px-4">
-            <CheckCircle className="text-blue-400 w-16 h-16 mb-4" />
+            <FaCheckCircle className="text-blue-400 w-16 h-16 mb-4" />
             <h1 className="text-3xl font-bold text-blue-400 mb-2">Payment Successful!</h1>
             <p className="text-gray-700 text-center mb-6">
                 Thank you for your purchase. Your payment was received successfully.
