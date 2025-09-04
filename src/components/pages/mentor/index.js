@@ -1,4 +1,5 @@
 export { default as Dashboard } from './Dashboard'
+export { default as Earnings } from './Earnings'
 export { default as MyCourses } from './MyCourses'
 export { default as CourseDetails } from './CourseDetails'
 export { default as Blogs } from './Blogs'

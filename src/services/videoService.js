@@ -9,28 +9,41 @@ const formatYouTubeURL = (url) => {
 
 // Add a new video to a course (Mentor only)
 export const addCourseVideo = async (courseId, videoData) => {
+    console.log('Sending video data:', videoData);
+
+    const formattedUrl = formatYouTubeURL(videoData.url);
+
+    if (!formattedUrl) {
+        toast.error('Invalid YouTube URL');
+        throw new Error('Invalid YouTube URL');
+    }
+
+    const token = localStorage.getItem('token'); // or from your auth context
+
     try {
-        const formattedUrl = formatYouTubeURL(videoData.url);
-
-        if (!formattedUrl) {
-            toast.error('Invalid YouTube URL');
-            throw new Error('Invalid YouTube URL');
-        }
-
-        const response = await API.post('/videos', {
-            course: courseId,
-            title: videoData.title,
-            url: formattedUrl
-        });
+        const response = await API.post(
+            '/videos',
+            {
+                course: courseId,
+                title: videoData.title,
+                url: formattedUrl
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
 
         toast.success('Video added successfully!');
         return response.data;
     } catch (error) {
-        const message = error.response?.data?.message || 'Failed to add video';
+        const message = error.response?.data?.msg || 'Failed to add video';
         toast.error(message);
         throw error;
     }
 };
+
 
 
 // Get all videos for a course

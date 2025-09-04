@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { MdDashboard } from "react-icons/md";
+import { FaUsers } from "react-icons/fa6";
 import { IoBookSharp } from "react-icons/io5";
 import { FaBloggerB } from "react-icons/fa";
 import { RiAdvertisementFill } from "react-icons/ri";
@@ -9,7 +10,7 @@ import { FaUser } from "react-icons/fa";
 import { SiGoogleanalytics } from "react-icons/si";
 import { IoMdLogOut } from "react-icons/io";
 
-const Sidebar = ({ isOpen, toggleSidebar }) => {
+const AdminSidebar = ({ isOpen, toggleSidebar }) => {
     const location = useLocation();
 
     // Check if current route matches the link
@@ -40,12 +41,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <nav className="flex flex-col gap-1 mt-10">
                 <h2 className='px-4 text-gray-400 mb-2'>Menu</h2>
                 {[
-                    { path: "/mentor-dashboard/", name: "Dashboard", icon: MdDashboard },
-                    { path: "/mentor-dashboard/earnings", name: "Earnings", icon: SiGoogleanalytics },
-                    { path: "/mentor-dashboard/my-courses", name: "My Courses", icon: IoBookSharp },
-                    { path: "/mentor-dashboard/blogs", name: "Blog", icon: FaBloggerB },
-                    { path: "/mentor-dashboard/products", name: "Advertise Products", icon: RiAdvertisementFill },
-                    { path: "/mentor-dashboard/profile", name: "Profile", icon: FaUser },
+                    { path: "/admin-dashboard/", name: "Dashboard", icon: MdDashboard },
+                    { path: "/admin-dashboard/analytics-reports", name: "Analytics & Reports", icon: SiGoogleanalytics },
+                    { path: "/admin-dashboard/user-management", name: "Users Management", icon: FaUsers },
+                    { path: "/admin-dashboard/all-courses", name: "Courses", icon: IoBookSharp },
+                    { path: "/admin-dashboard/all-blogs", name: "Blogs", icon: FaBloggerB },
+                    { path: "/admin-dashboard/all-products", name: "Products", icon: RiAdvertisementFill },
+                    { path: "/admin-dashboard/profile-security", name: "Profile & Security", icon: FaUser },
                 ].map((item) => (
                     <Link
                         to={item.path}
@@ -71,7 +73,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 </div>
             </nav>
         </div>
-    );
-};
+    )
+}
 
-export default Sidebar;
+export default AdminSidebar

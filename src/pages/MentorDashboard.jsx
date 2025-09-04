@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import { CiMenuFries } from "react-icons/ci";
 import { Routes, Route } from 'react-router-dom';
-import { Dashboard, MyCourses, Blogs, Products, Profile, CourseDetails } from '../components/pages/mentor/index';
+import { Dashboard, Earnings, MyCourses, Blogs, Products, Profile, CourseDetails } from '../components/pages/mentor/index';
 
 const MentorDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -30,6 +30,7 @@ const MentorDashboard = () => {
         <main className="max-w-7xl mx-auto">
           <Routes>
             <Route path='/' element={<Dashboard />} />
+            <Route path='/earnings' element={<Earnings />} />
             <Route path='/my-courses' element={<MyCourses />} />
             <Route path='/course/:id' element={<CourseDetails />} />
             <Route path='/blogs' element={<Blogs />} />

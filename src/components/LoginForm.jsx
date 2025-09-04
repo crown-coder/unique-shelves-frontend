@@ -33,7 +33,6 @@ const LoginForm = () => {
                 fullName: user.fullName,
                 email: user.email,
                 role: user.role,
-                // Add any other user fields you need
             }));
 
             toast.success('Login successful!');

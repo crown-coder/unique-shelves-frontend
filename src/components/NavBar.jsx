@@ -54,17 +54,19 @@ const NavBar = () => {
 
     return (
         <header className="bg-white sticky top-0 z-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+            <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
                 {/* Logo */}
                 <Link to="/" className="text-2xl text-blue-950 flex items-center gap-2">
                     <IoBookSharp />
-                    <span className='font-light'>Unique<span className='font-semibold'>Shelves</span></span>
+                    <span className='font-light max-lg:text-sm'>Unique<span className='font-semibold'>Shelves</span></span>
                 </Link>
 
                 {/* Desktop Nav Links */}
                 <nav className="hidden md:flex space-x-6">
                     <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium">Home</Link>
                     <Link to="/courses" className="text-gray-700 hover:text-blue-600 font-medium">Courses</Link>
+                    <Link to="/products" className="text-gray-700 hover:text-blue-600 font-medium">Affiliate Products</Link>
+                    <Link to="/blogs" className="text-gray-700 hover:text-blue-600 font-medium">Blogs</Link>
                     {isLoggedIn && userData?.role === 'student' && (
                         <Link to="/my-courses" className="text-gray-700 hover:text-blue-600 font-medium">My Courses</Link>
                     )}
@@ -146,6 +148,10 @@ const NavBar = () => {
                     <nav className="flex flex-col space-y-3 p-4">
                         <Link to="/" onClick={closeMenu} className="text-gray-700 hover:text-blue-600 font-medium py-2">Home</Link>
                         <Link to="/courses" onClick={closeMenu} className="text-gray-700 hover:text-blue-600 font-medium py-2">Courses</Link>
+                        <Link to="/products" onClick={closeMenu} className="text-gray-700 hover:text-blue-600 font-medium">Affiliate Products</Link>
+                        <Link to="/blogs" className="text-gray-700 hover:text-blue-600 font-medium">Blogs</Link>
+
+
                         {isLoggedIn && userData?.role === 'student' && (
                             <Link to="/my-courses" onClick={closeMenu} className="text-gray-700 hover:text-blue-600 font-medium py-2">My Courses</Link>
                         )}

@@ -14,6 +14,7 @@ const PopularCourseSection = () => {
                 const shuffled = data.sort(() => 0.5 - Math.random())
                 const selected = shuffled.slice(0, 4)
                 setCourses(selected)
+                console.log(selected)
             } catch (error) {
                 console.error('Failed to fetch courses: ', error)
             }
@@ -40,13 +41,14 @@ const PopularCourseSection = () => {
                         title={course.title}
                         description={course.description}
                         category={course.category}
-                        mentor={course.mentor?.fullName || 'Unknown'}
-                        rating={course.rating || 4.5}
+                        instructor={course.mentor?.fullName || 'Unknown'}
+                        price={course.price}
+                        thumbnail={course.thumbnail}
                         onClick={() => handleCourseClick(course._id)}
                     />
                 ))}
             </div>
-            <Link className="mt-16 inline-block px-8 py-3 text-lg font-medium text-white bg-blue-400 rounded-full hover:bg-blue-600 transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
+            <Link to="/courses" className="mt-16 inline-block px-8 py-3 text-lg font-medium text-white bg-blue-400 rounded-full hover:bg-blue-600 transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
                 View More →
             </Link>
         </section>

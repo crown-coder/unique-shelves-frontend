@@ -1,79 +1,70 @@
-import { useState, useEffect } from 'react';
-import NavBar from "../components/NavBar";
-import CourseCard from '../components/CourseCard';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { getAllCourses } from '../services/courseService';
+import { useState, useEffect } from "react"
+import NavBar from "../components/NavBar"
+import BlogsCard from "../components/BlogsCard"
+import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
+import { getAllBlogs } from "../services/blogService"
 
-const Courses = () => {
-    const [courses, setCourses] = useState([]);
-    const [filteredCourses, setFilteredCourses] = useState([]);
+const Blogs = () => {
+    const [blogs, setBlogs] = useState([]);
+    const [filteredBlogs, setFilteredBlogs] = useState([])
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedCategory, setSelectedCategory] = useState('All');
     const [currentPage, setCurrentPage] = useState(1);
-    const coursesPerPage = 8;
-
-    const categories = ["All", "Web Development", "Data Science", "Mobile Development", "Design", "Business"];
+    const blogPerPage = 8;
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchCourses = async () => {
+        const fetchBlogs = async () => {
             try {
                 setLoading(true);
-                const response = await getAllCourses();
-                setCourses(response);
-                setFilteredCourses(response);
+                const response = await getAllBlogs();
+                setBlogs(response)
+                setFilteredBlogs(response)
                 console.log(response)
             } catch (error) {
-                toast.error("Failed to load courses");
+                toast.error("Failed to load blogs");
                 console.error("Error fetching courses:", error);
-                setCourses([]);
-                setFilteredCourses([]);
+                setBlogs([]);
+                setFilteredBlogs([]);
             } finally {
                 setLoading(false);
             }
-        };
+        }
 
-        fetchCourses();
+        fetchBlogs();
     }, []);
 
-    // Filter courses based on search and category
+    // Filter Blogs based on search
     useEffect(() => {
-        let results = [...courses];
+        let result = [...blogs];
 
         if (searchTerm) {
-            results = results.filter(course =>
-                course?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                course?.instructor?.toLowerCase().includes(searchTerm.toLowerCase())
-            );
+            result = result.filter(blog =>
+                blog?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                blog?.author?.fullName?.toLowerCase().includes(searchTerm.toLowerCase())
+            )
         }
 
-        if (selectedCategory !== 'All') {
-            results = results.filter(course => course?.category === selectedCategory);
-        }
+        setFilteredBlogs(result);
+        setCurrentPage(1);
 
-        setFilteredCourses(results);
-        setCurrentPage(1); // Reset to first page when filters change
-    }, [searchTerm, selectedCategory, courses]);
+    }, [searchTerm, blogs])
 
-    const handleCourseClick = (courseId) => {
-        navigate(`/courses/${courseId}`);
-    };
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
-    };
+    }
 
-    const handleCategoryChange = (e) => {
-        setSelectedCategory(e.target.value);
-    };
+    const handleBlogClick = (blogId) => {
+        navigate(`/blogs/${blogId}`);
+    }
 
     // Pagination logic
-    const indexOfLastCourse = currentPage * coursesPerPage;
-    const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
-    const currentCourses = filteredCourses.slice(indexOfFirstCourse, indexOfLastCourse);
-    const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
+    const indexOfLastBlog = currentPage * blogPerPage;
+    const indexOfFirstBlog = indexOfLastBlog - blogPerPage;
+    const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
+    const totalPages = Math.ceil(filteredBlogs.length / blogPerPage);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -87,7 +78,7 @@ const Courses = () => {
                     </div>
                 </div>
             </main>
-        );
+        )
     }
 
     return (
@@ -97,18 +88,18 @@ const Courses = () => {
 
                 {/* Page Header */}
                 <div className="my-8">
-                    <h1 className="text-3xl font-bold text-gray-900">Explore Our Courses</h1>
-                    <p className="text-gray-600 mt-2">Find the perfect course to advance your skills</p>
+                    <h1 className="text-3xl font-bold text-gray-900">Explore Our Blogs</h1>
+                    <p className="text-gray-600 mt-2">Find the perfect blogs to sharpen your brain and stay up to date</p>
                 </div>
 
-                {/* Search and Filter Section */}
+                {/* Search */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 bg-white p-4 rounded-lg shadow-sm">
                     {/* Search Bar */}
                     <div className="w-full md:w-1/3">
                         <div className="relative">
                             <input
                                 type="text"
-                                placeholder="Search courses..."
+                                placeholder="Search Blogs..."
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={searchTerm}
                                 onChange={handleSearchChange}
@@ -120,52 +111,31 @@ const Courses = () => {
                             </button>
                         </div>
                     </div>
-
-                    {/* Category Filter */}
-                    <div className="w-full md:w-auto">
-                        <select
-                            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            value={selectedCategory}
-                            onChange={handleCategoryChange}
-                        >
-                            {categories.map(category => (
-                                <option key={category} value={category}>{category}</option>
-                            ))}
-                        </select>
-                    </div>
                 </div>
 
                 {/* Results count */}
                 <div className="mb-4 text-gray-600">
-                    {filteredCourses.length} {filteredCourses.length === 1 ? 'course' : 'courses'} found
+                    {filteredBlogs.length} {filteredBlogs.length === 1 ? 'Blog' : 'Blogs'} found
                 </div>
 
-                {/* Courses Grid */}
-                {currentCourses.length > 0 ? (
+                {/* Blogs Grid */}
+                {currentBlogs.length > 0 ? (
                     <div className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8'>
-                        {currentCourses.map(course => (
-                            <CourseCard
-                                key={course._id}
-                                id={course._id}
-                                title={course.title}
-                                description={course.description}
-                                category={course.category}
-                                instructor={course.mentor?.fullName || 'Unknown'}
-                                price={course.price}
-                                thumbnail={course.thumbnail}
-                                onClick={() => handleCourseClick(course._id)} // Fixed to use _id
+                        {currentBlogs.map((blog, index) => (
+                            <BlogsCard
+                                key={index} blog={blog} onClick={() => handleBlogClick(blog._id)}
                             />
                         ))}
                     </div>
                 ) : (
                     <div className="text-center py-12">
-                        <h3 className="text-lg font-medium text-gray-700">No courses found</h3>
-                        <p className="text-gray-500 mt-2">Try adjusting your search or filter criteria</p>
+                        <h3 className="text-lg font-medium text-gray-700">No Blog found</h3>
+                        <p className="text-gray-500 mt-2">Try adjusting your search criteria</p>
                     </div>
                 )}
 
                 {/* Pagination */}
-                {filteredCourses.length > coursesPerPage && (
+                {filteredBlogs.length > blogPerPage && (
                     <div className="flex justify-center my-8">
                         <nav className="flex items-center gap-1">
                             <button
@@ -228,9 +198,11 @@ const Courses = () => {
                         </nav>
                     </div>
                 )}
-            </div>
-        </main>
-    );
-};
 
-export default Courses;
+            </div>
+
+        </main>
+    )
+}
+
+export default Blogs

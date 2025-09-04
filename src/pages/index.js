@@ -1,5 +1,8 @@
 export { default as Home } from './Home'
 export { default as Courses } from './Courses'
+export { default as Products } from './Products'
+export { default as Blogs } from './Blogs'
+export { default as BlogDetails } from './BlogDetails'
 export { default as CourseDetails } from './CourseDetails'
 export { default as MyCoursesStudent } from './MyCoursesStudent'
 export { default as MyCoursesDetails } from './MyCoursesDetails'

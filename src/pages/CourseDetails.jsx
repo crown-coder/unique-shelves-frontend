@@ -44,21 +44,27 @@ const CourseDetails = () => {
 
         try {
             const user = JSON.parse(userData);
+
+            // Call Monnify payment service
             const paymentLink = await initiatePayment({
-                fullName: user.fullName,
                 email: user.email,
-                amount: course.price,
                 courseId: course._id
-            }, token);
+            });
+
+            // Redirect to Monnify hosted payment page
             window.location.href = paymentLink;
+
         } catch (error) {
-            toast.error(error.response?.data?.message || "Payment failed");
+            const msg = error.response?.data?.msg || "Payment failed";
+            toast.error(msg);
+
             if (error.response?.status === 401) {
                 localStorage.clear();
                 navigate('/login');
             }
         }
     };
+
 
     if (loading) return <div className="p-4 text-center">Loading course...</div>;
     if (!course) return <div className="p-4 text-center">Course not found</div>;

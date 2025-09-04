@@ -47,7 +47,7 @@ const Dashboard = () => {
     };
 
     return (
-        <div className="h-screen overflow-y-scroll bg-gray-50 p-4 md:p-8">
+        <div className="h-screen overflow-y-scroll bg-white rounded-lg my-2 p-4 md:p-8">
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-2xl md:text-3xl font-normal text-gray-800 mb-6">Dashboard Overview</h1>
 
@@ -80,7 +80,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* Revenue Section */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                {/* <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
                     <div className="bg-white p-6 rounded-xl shadow-sm lg:col-span-2">
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-lg font-semibold text-gray-800">Earnings Overview</h2>
@@ -125,10 +125,10 @@ const Dashboard = () => {
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Course Distribution */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {/* <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="bg-white p-6 rounded-xl shadow-sm">
                         <h2 className="text-lg font-semibold text-gray-800 mb-4">Course Distribution</h2>
                         <div className="h-64">
@@ -167,7 +167,7 @@ const Dashboard = () => {
                             />
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );
@@ -198,17 +198,17 @@ const RevenueItem = ({ icon, title, value }) => (
     </div>
 );
 
-// Reusable Activity Item Component
-const ActivityItem = ({ title, description, time }) => (
-    <div className="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
-        <div className="flex justify-between items-start">
-            <div>
-                <h3 className="font-medium text-gray-800">{title}</h3>
-                <p className="text-sm text-gray-500">{description}</p>
-            </div>
-            <span className="text-xs text-gray-400 whitespace-nowrap ml-2">{time}</span>
-        </div>
-    </div>
-);
+// // Reusable Activity Item Component
+// const ActivityItem = ({ title, description, time }) => (
+//     <div className="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+//         <div className="flex justify-between items-start">
+//             <div>
+//                 <h3 className="font-medium text-gray-800">{title}</h3>
+//                 <p className="text-sm text-gray-500">{description}</p>
+//             </div>
+//             <span className="text-xs text-gray-400 whitespace-nowrap ml-2">{time}</span>
+//         </div>
+//     </div>
+// );
 
 export default Dashboard;

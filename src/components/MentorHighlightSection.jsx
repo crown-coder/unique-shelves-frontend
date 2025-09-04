@@ -4,36 +4,36 @@ import { FaLinkedin, FaTwitter, FaChalkboardTeacher, FaStar, FaQuoteLeft } from 
 const MentorHighlightSection = () => {
     const mentors = [
         {
-            name: "Dr. Sarah Chen",
-            role: "Senior Data Scientist at Google",
-            bio: "10+ years experience in machine learning and AI research. PhD in Computer Science from Stanford.",
-            testimonial: "Teaching allows me to give back and help shape the next generation of data scientists.",
+            name: "Mustapha Abubakar",
+            role: "Teacher",
+            bio: "Mustapha Abubakar is a dedicated educator and Plant Scientist with First Class degrees and international research publication. He leads community projects in education, health, and the environment, driven by a passion for service and knowledge.",
+            testimonial: "I began my education in Gombe and went on to earn First Class degrees in Plant Science and Plant Ecology from Gombe State University.",
             rating: 4.9,
             courses: 12,
             students: 8500,
-            image: "michael.webp",
+            image: "/uploads/Mustapha.jpg",
             social: { linkedin: "#", twitter: "#" }
         },
         {
-            name: "James Rodriguez",
-            role: "Lead UX Designer at Apple",
-            bio: "Product design expert with 8 years experience creating award-winning user experiences.",
-            testimonial: "Seeing my students land design jobs at top companies is incredibly rewarding.",
+            name: "Abubakar Sadiq Alhassan",
+            role: "Graphic Designer",
+            bio: "Hi, I’m Abubakar Sadiq Alhassan (Sarkeey), a freelance graphic designer with 5+ years of experience. I create clean, customer-focused designs and have trained over 500 people to monetize their smartphones with creative skills.",
+            testimonial: "I currently offer a course titled “Basics of Graphics Design for Beginners” — perfect for anyone looking to start a design career using just a smartphone.",
             rating: 4.8,
             courses: 8,
             students: 6200,
-            image: "james.webp",
+            image: "/uploads/Sadiq.jpg",
             social: { linkedin: "#", twitter: "#" }
         },
         {
-            name: "Priya Patel",
-            role: "Senior Software Engineer at Netflix",
-            bio: "Specializes in scalable backend systems and microservices architecture.",
-            testimonial: "I break down complex engineering concepts into digestible lessons anyone can understand.",
+            name: "Hamza Alhassan",
+            role: "Graphic Designer",
+            bio: "My name is Hamza Alhassan, and I live in Minna, Niger State, Nigeria. I’m a 3D Cartoon Animator, Graphic Designer, and Laptop Repair Technician with a passion for creativity and tech solutions.",
+            testimonial: " I specialize in 3D cartoon animation videos, graphic design, and laptop repair, combining creativity and technical expertise to deliver quality results.",
             rating: 5.0,
             courses: 15,
             students: 11200,
-            image: "david.webp",
+            image: "/uploads/Hamza.jpg",
             social: { linkedin: "#", twitter: "#" }
         }
     ];
@@ -58,9 +58,9 @@ const MentorHighlightSection = () => {
                                 <img
                                     src={mentor.image}
                                     alt={mentor.name}
-                                    className="w-full h-64 object-cover"
+                                    className="w-full h-64 object-contain"
                                 />
-                                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-20" />
+                                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-600 to-transparent h-20" />
                                 <div className="absolute bottom-4 left-4">
                                     <h3 className="text-xl font-bold text-white">{mentor.name}</h3>
                                     <p className="text-blue-200">{mentor.role}</p>
