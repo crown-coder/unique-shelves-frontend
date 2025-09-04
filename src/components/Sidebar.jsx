@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { MdCancel } from "react-icons/md";
 import { MdDashboard } from "react-icons/md";
 import { IoBookSharp } from "react-icons/io5";
 import { FaBloggerB } from "react-icons/fa";
@@ -29,7 +29,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                     onClick={toggleSidebar}
                     className="p-1 rounded-full hover:bg-indigo-700 transition-colors"
                 >
-                    <X size={24} />
+                    < MdCancel size={24} />
                 </button>
             </div>
 
