@@ -1,4 +1,4 @@
-import API from './api';
+import API from './api.js';
 import { toast } from 'react-toastify';
 
 // Get all courses (Public)
